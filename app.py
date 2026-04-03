@@ -181,12 +181,12 @@ class AppConfig:
     }
 
     # Default values for PC 3-zone boxes
-    # 操作履歴パネル（画面右半分に縦長で表示）から読み取る構成:
-    #   PC_Liq   : 右パネル上部 「提供した流動性の合計」$XX,XXX エリア
-    #   PC_Profit: 右パネル中程〜最下部まで 手数料を回収エントリ全行（2日前・1日前含む） → 末尾の $ 値を採用
+    # 操作履歴パネル（画面右端 x≈0.79〜1.0）から読み取る構成:
+    #   PC_Liq   : 右パネル上部 「提供した流動性の合計」$XX,XXX → y=0.19〜0.30
+    #   PC_Profit: 右パネル中部〜下部 手数料を回収エントリ（1日前・当日）→ y=0.48〜1.0 末尾の $ 値を採用
     PC_BOX_DEFAULTS: Dict[str, float] = {
-        "PC_Liq_Left": 0.50, "PC_Liq_Top": 0.10, "PC_Liq_Right": 1.0, "PC_Liq_Bottom": 0.30,
-        "PC_Profit_Left": 0.50, "PC_Profit_Top": 0.45, "PC_Profit_Right": 1.0, "PC_Profit_Bottom": 1.0,
+        "PC_Liq_Left": 0.79, "PC_Liq_Top": 0.19, "PC_Liq_Right": 1.0, "PC_Liq_Bottom": 0.30,
+        "PC_Profit_Left": 0.79, "PC_Profit_Top": 0.48, "PC_Profit_Right": 1.0, "PC_Profit_Bottom": 1.0,
     }
 
     # Auto-expand margin when OCR detects nothing (ratio units)
