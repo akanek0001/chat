@@ -641,13 +641,12 @@ class U:
             chunk_amounts.append(found[0] if found else None)
 
         # ── カラムレイアウト検出：大半のチャンクに金額がなく全金額が末尾にまとまる場合 ──
+        # 日付数より金額数が少ない場合（例: 最後の日付が画像下端で切れている）も
+        # zip の自然な停止に任せて位置合わせを行う（件数一致チェックを除去）
         n_found = sum(1 for a in chunk_amounts if a is not None)
-        use_positional = (
-            n_found <= 1
-            and len(all_amount_matches) >= len(date_matches)
-        )
+        use_positional = (n_found <= 1 and len(all_amount_matches) >= 1)
         if use_positional:
-            # i番目の日付 → i番目の金額（カラム順一致）
+            # i番目の日付 → i番目の金額（カラム順一致）。金額が足りない分は None
             pos_amounts = [m.group(1) for m in all_amount_matches]
             final_amounts: List[Optional[str]] = (
                 pos_amounts[: len(date_matches)]
